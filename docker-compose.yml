@@ -1,0 +1,27 @@
+version: "3"
+services:
+  app:
+    build: .
+    entrypoint: ./docker-entrypoint.sh
+    environment:
+      - NODE_ENV=development
+      - DB_RESET=true
+      - DB_MIGRATE=true
+      - DB_SEED=true
+    volumes:
+      - ./routes ./opt/app/routes
+      - ./db ./opt/app/db
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: node
+      POSTGRES_DB: stockx
+    ports:
+        - "5432:5432"
+      

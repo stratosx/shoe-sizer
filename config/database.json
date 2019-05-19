@@ -1,0 +1,9 @@
+{
+  "development": {
+    "host": "db",
+    "user": "node",
+    "password": "password",
+    "database": "stockx",
+    "port": 5432
+  }
+}
