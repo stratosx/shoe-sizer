@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+set -e
+
 printf "Starting Docker container in $NODE_ENV...\n"
 printf "Waiting for PG DB to come up...\n";
 until node ./bin/wait-for-pg.js
@@ -17,3 +19,5 @@ if [ -n "$DB_SEED" ]; then
   printf "\n* Seeding Database *\n"
   ./node_modules/.bin/knex seed:run
 fi
+printf "\n* Starting Application *\n\n"
+exec "$@"

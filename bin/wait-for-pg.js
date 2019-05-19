@@ -2,7 +2,7 @@ const pgp = require('pg-promise')();
 const database = require('../config/database.json');
 
 if(typeof process.env.NODE_ENV === 'undefined') {
-  throw new Error('NODE_ENV is not defined');
+    throw new Error('NODE_ENV is not defined');
 }
 
 const environment = process.env.NODE_ENV;

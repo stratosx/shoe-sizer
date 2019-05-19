@@ -1,6 +1,6 @@
 FROM node:10
 
-WORKDIR /opt/shoe-sizer
+WORKDIR /opt/app
 RUN chown -R node:node .
 
 USER node
@@ -15,8 +15,8 @@ ARG NODE_ENV=development
 ENV NODE_ENV $NODE_ENV
 
 ENV PORT=8080 \
-    PATH="/opt/web/node_modules/.bin:${PATH}"
+    PATH="/opt/app/node_modules/.bin:${PATH}"
 
 EXPOSE 8080
-
+ENTRYPOINT [ "bash", "./docker-entrypoint.sh" ]
 CMD [ "node", "./bin/www" ]
