@@ -7,15 +7,15 @@ exports.seed = function(knex, Promise) {
       return knex('shoes').insert([
         {
             shoe_id: 1,
-            shoe_name: 'adidas ZX 500 Dragon Ball Z Son Goku'
+            shoe_name: 'adidas zx 500 dragon ball z son goku'
         },
         {
             shoe_id: 2,
-            shoe_name: 'adidas Ultra Tech Dragon Ball Z Vegeta'
+            shoe_name: 'adidas ultra tech dragon ball z vegeta'
         },
         {
             shoe_id: 3,
-            shoe_name: 'adidas Yung-1 Dragon Ball Z Frieza'
+            shoe_name: 'adidas yung-1 dragon ball z frieza'
         },
       ]);
     });

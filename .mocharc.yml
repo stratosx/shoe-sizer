@@ -1,0 +1,6 @@
+---
+reporter: spec
+require:
+  - test/support/node
+recursive: true
+exit: true

@@ -1,10 +1,10 @@
-const devConfig = require('./config/database.json');
+const config = require('./config/database.json');
 
 module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: devConfig.development,
+    connection: config.development,
     migrations: {
       directory: './db/migrations' 
     },
