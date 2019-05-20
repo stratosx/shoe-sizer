@@ -1,5 +1,5 @@
 # shoe-sizer
-shoe-sizer is a Node.js app that allows you to create and store fit rankings of shoes. It impliments express and knex and uses docker for ease of deployment.
+shoe-sizer is a Node.js app that allows you to create and store fit rankings of shoes. It implements express and knex and uses docker for ease of deployment.
 # Setup
 
 You will need docker and docker-compose installed to get this to run.
@@ -27,7 +27,7 @@ PUT http://localhost:8080/shoes/:id/fit/ratings
     - id is the shoe_id from the database
     - rank is passed in the body 1 - 5
 
-GET http://localhost:8080/shoes/:id/fit/ratings
+GET http://localhost:8080/shoes/:id/fit
     - id is the shoe_id from the database
     - will return the trueToSizeCalculation
 
