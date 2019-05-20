@@ -40,8 +40,7 @@ validate(createShoeValidation),
 async (req, res, next) => {
 
     try {
-
-        const id =
+        //TODO: verify shoe name does not already exist
         await knex('shoes')
         .insert({ shoe_name: req.body.shoe_name });
     }
