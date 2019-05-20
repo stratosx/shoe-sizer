@@ -94,7 +94,7 @@ async (req, res, next) => {
         if(rank.avg === null) {
             return res.status(400).json({ error: 'id does not exist' });
         }
-        return res.json(rank);
+        return res.json({ trueToSizeCalculation: rank.avg });
 
     }
     catch(err) {

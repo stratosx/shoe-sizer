@@ -88,13 +88,13 @@ describe('routes/shoes', function() {
 
         context('passing in an id that exists', function() {
 
-            it('should return an object with an average', function() {
+            it('should return an object with trueToSizeCalculation', function() {
                 return request
                 .get('/shoes/1/fit')
                 .expect(200)
                 .then( (res) => {
                     expect(res.body).to.be.an('Object');
-                    expect(res.body).to.have.property('avg');
+                    expect(res.body).to.have.property('trueToSizeCalculation');
                 });
             });
         });
