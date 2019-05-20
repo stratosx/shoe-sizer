@@ -63,7 +63,7 @@ validate(shoeFitValidation),
 async (req, res, next) => {
 
     try {
-        //TODO: verify shoe name does not already exist
+
         await knex('shoe_fit_ranks')
         .insert({
             rank: req.body.rank,
@@ -76,6 +76,33 @@ async (req, res, next) => {
     }
 
     res.status(200).send('ok');
+});
+
+/**
+ * GET the average ranking of a shoe
+ */
+router.get('/:id/fit',
+jsonParser,
+async (req, res, next) => {
+
+    try {
+
+        const rank  = await knex('shoe_fit_ranks')
+        .avg('rank')
+        .where({ shoe_id: req.params.id }).first();
+
+        if(rank.avg === null) {
+            return res.status(400).json({ error: 'id does not exist' });
+        }
+        return res.json(rank);
+
+    }
+    catch(err) {
+        console.error('error saving new rank', err.message);
+        return res.status(500).json({ error: 'error saving new rank' });
+    }
+
+
 });
 
 

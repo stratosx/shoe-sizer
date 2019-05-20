@@ -84,7 +84,29 @@ describe('routes/shoes', function() {
 
     });
 
+    context('GET shoe fit rank', function() {
 
+        context('passing in an id that exists', function() {
 
+            it('should return an object with an average', function() {
+                return request
+                .get('/shoes/1/fit')
+                .expect(200)
+                .then( (res) => {
+                    expect(res.body).to.be.an('Object');
+                    expect(res.body).to.have.property('avg');
+                });
+            });
+        });
+
+        context('passing in and id that does not exist', function() {
+
+            it('should return 400', function() {
+                return request
+                .get('/shoes/100/fit')
+                .expect(400);
+            });
+        });
+    });
 
 });
