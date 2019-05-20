@@ -96,8 +96,8 @@ async (req, res, next) => {
 
     }
     catch(err) {
-        console.error('error saving new rank', err.message);
-        return res.status(500).json({ error: 'error saving new rank' });
+        console.error('error getting fit rank', err.message);
+        return res.status(500).json({ error: 'error gertting fit rank' });
     }
 });
 
