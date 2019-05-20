@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
             table.increments('id').primary();
             table.integer('shoe_id').references('shoe_id').inTable('shoes');
             table.integer('rank');
-            table.timestampsd
+            table.timestamp('created_at').defaultTo(knex.fn.now());
         }),
     ]);
 };
