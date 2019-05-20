@@ -2,9 +2,9 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('shoes').del()
-    .then(function () {
+    .then(async function () {
       // Inserts seed entries
-      return knex('shoes').insert([
+      await knex('shoes').insert([
         {
             shoe_id: 1,
             shoe_name: 'adidas zx 500 dragon ball z son goku'
@@ -18,5 +18,7 @@ exports.seed = function(knex, Promise) {
             shoe_name: 'adidas yung-1 dragon ball z frieza'
         },
       ]);
+      //Need to set this or it will assume the id starts at 1
+      await knex.raw('select setval(\'shoes_shoe_id_seq\', max(shoe_id)) from shoes');
     });
 };

@@ -27,6 +27,31 @@ describe('routes/shoes', function() {
         });
     });
 
+    context('POST', function() {
+
+        context('passing in shoe_name', function() {
+
+            it('should retun 201 ok', function() {
+                return request
+                .post('/shoes')
+                .send({ shoe_name: 'testShoe' })
+                .expect(201);
+            });
+        });
+
+        context('not passing in shoe_name', function() {
+
+            it('should retun 400', function() {
+                return request
+                .post('/shoes')
+                .send()
+                .expect(400);
+            });
+        });
+
+    });
+
+
 
 
 });

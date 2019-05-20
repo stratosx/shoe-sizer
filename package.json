@@ -7,9 +7,12 @@
     "test": "docker-compose build && docker-compose run --rm app mocha"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "express-validation": "^1.0.2",
+    "joi": "^14.3.1",
     "knex": "^0.15.0",
     "morgan": "^1.9.1",
     "pg-promise": "^8.4.5"
