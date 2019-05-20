@@ -43,13 +43,13 @@ async (req, res, next) => {
         //TODO: verify shoe name does not already exist
         await knex('shoes')
         .insert({ shoe_name: req.body.shoe_name });
+
+        return res.status(201).send('ok');
     }
     catch(err) {
         console.error('error saving new shoe', err.message);
-        res.status(500).json({ error: 'error saving new shoe' });
+        return res.status(500).json({ error: 'error saving new shoe' });
     }
-
-    res.status(201).send('ok');
 });
 
 const shoeFitValidation = require('./validation/shoeFit.js');
@@ -63,19 +63,18 @@ validate(shoeFitValidation),
 async (req, res, next) => {
 
     try {
-
         await knex('shoe_fit_ranks')
         .insert({
             rank: req.body.rank,
             shoe_id: req.params.id
         });
+
+        return res.status(200).send('ok');
     }
     catch(err) {
         console.error('error saving new rank', err.message);
         return res.status(500).json({ error: 'error saving new rank' });
     }
-
-    res.status(200).send('ok');
 });
 
 /**
@@ -86,7 +85,6 @@ jsonParser,
 async (req, res, next) => {
 
     try {
-
         const rank  = await knex('shoe_fit_ranks')
         .avg('rank')
         .where({ shoe_id: req.params.id }).first();
@@ -101,8 +99,6 @@ async (req, res, next) => {
         console.error('error saving new rank', err.message);
         return res.status(500).json({ error: 'error saving new rank' });
     }
-
-
 });
 
 
