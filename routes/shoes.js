@@ -45,11 +45,37 @@ async (req, res, next) => {
         .insert({ shoe_name: req.body.shoe_name });
     }
     catch(err) {
-        console.err('error saving new shoe', err);
+        console.error('error saving new shoe', err.message);
         res.status(500).json({ error: 'error saving new shoe' });
     }
 
     res.status(201).send('ok');
+});
+
+const shoeFitValidation = require('./validation/shoeFit.js');
+
+/**
+ * PUT to shoes to add a fit rating
+ */
+router.put('/:id/fit/ratings',
+jsonParser,
+validate(shoeFitValidation),
+async (req, res, next) => {
+
+    try {
+        //TODO: verify shoe name does not already exist
+        await knex('shoe_fit_ranks')
+        .insert({
+            rank: req.body.rank,
+            shoe_id: req.params.id
+        });
+    }
+    catch(err) {
+        console.error('error saving new rank', err.message);
+        return res.status(500).json({ error: 'error saving new rank' });
+    }
+
+    res.status(200).send('ok');
 });
 
 

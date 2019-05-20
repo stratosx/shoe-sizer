@@ -2,16 +2,17 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
     return knex('shoe_fit_ranks').del()
-    .then(function () {
+    .then(async function () {
         // Inserts seed entries
         let inserts = [];
         for(let i = 0; i < 100; i++) {
             inserts[i] = {
                 shoe_id: randomInt(3),
-                rank: randomInt(5), 
+                rank: randomInt(5),
             };
         }
-        return knex('shoe_fit_ranks').insert(inserts);
+        await knex('shoe_fit_ranks').insert(inserts);
+        await knex.raw('select setval(\'shoe_fit_ranks_id_seq\', max(id)) from shoe_fit_ranks');
     });
 };
 

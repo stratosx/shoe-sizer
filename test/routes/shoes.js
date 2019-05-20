@@ -31,7 +31,7 @@ describe('routes/shoes', function() {
 
         context('passing in shoe_name', function() {
 
-            it('should retun 201 ok', function() {
+            it('should retun 201', function() {
                 return request
                 .post('/shoes')
                 .send({ shoe_name: 'testShoe' })
@@ -46,6 +46,39 @@ describe('routes/shoes', function() {
                 .post('/shoes')
                 .send()
                 .expect(400);
+            });
+        });
+
+    });
+    context('PUT fit/ratings', function() {
+
+        context('passing in id param and no rank', function() {
+
+            it('should retun 400', function() {
+                return request
+                .put('/shoes/1/fit/ratings')
+                .send()
+                .expect(400);
+            });
+        });
+
+        context('passing in id param and rank', function() {
+
+            it('should retun 200', function() {
+                return request
+                .put('/shoes/1/fit/ratings')
+                .send({ rank: 5 })
+                .expect(200);
+            });
+        });
+
+        context('passing in id that does not exist', function() {
+
+            it('should retun 500', function() {
+                return request
+                .put('/shoes/100/fit/ratings')
+                .send({ rank: 5 })
+                .expect(500);
             });
         });
 
